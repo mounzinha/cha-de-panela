@@ -431,8 +431,8 @@
 
       btnConfirmarDoacao.addEventListener("click", () => {
         const valor = Number(valorSlider.value);
-        if (valor < 50) {
-          alert("O valor mínimo para doação é R$ 50,00.");
+        if (valor < 10) {
+          alert("O valor mínimo para doação é R$ 10,00.");
           return;
         }
         doacoes.push({ valor, timestamp: Date.now() });
