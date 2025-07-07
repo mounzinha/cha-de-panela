@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Lista de Presentes 💍 Chá de Panela</title>
+    <style>
+      /* Estilos conforme seu layout original */
+      body {
+        font-family: "Segoe UI", sans-serif;
+        margin: 0;
+        padding: 2rem;
+        background: linear-gradient(to right, #e3edf7, #c3d7e8);
+      }
+      .container {
+        max-width: 700px;
+        margin: auto;
+        background: white;
+        border-radius: 16px;
+        padding: 2rem;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        border: 1px solid #dde6ef;
+      }
+      h1 {
+        text-align: center;
+        color: #2e5c88;
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+      }
+      .ring {
+        font-size: 1.5rem;
+        animation: pulse 1.4s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.08);
+        }
+      }
+      .boas-vindas {
+        background: #f5faff;
+        border: 1px solid #d0e6f4;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 12px rgba(100, 149, 237, 0.1);
+      }
+      .boas-vindas h2 {
+        color: #2c6094;
+        margin-bottom: 0.5rem;
+      }
+      .boas-vindas p {
+        color: #3a4f66;
+        font-size: 1rem;
+        margin: 0.5rem 0;
+        line-height: 1.4;
+      }
+      label {
+        font-size: 1.05rem;
+        color: #444;
+        margin-top: 1rem;
+        display: block;
+      }
+      select {
+        width: 100%;
+        padding: 0.7rem;
+        font-size: 1rem;
+        border-radius: 10px;
+        border: 1px solid #ccd6dd;
+        margin-top: 0.5rem;
+        background-color: #f9fbfc;
+        cursor: pointer;
+      }
+      button {
+        margin-top: 1.5rem;
+        width: 100%;
+        padding: 0.8rem;
+        background: linear-gradient(to right, #4a90e2, #357ab7);
+        color: white;
+        font-size: 1rem;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      button:hover {
+        background: linear-gradient(to right, #357ab7, #2c6094);
+      }
+      h2 {
+        color: #3f5f7c;
+        margin-top: 2rem;
+        font-size: 1.4rem;
+      }
+      .caixa-itens {
+        background-color: #f0f7fb;
+        border: 1px solid #c9e0f2;
+        border-radius: 12px;
+        padding: 1rem;
+        margin-top: 1rem;
+        max-height: 180px;
+        overflow-y: auto;
+      }
+      ul {
+        list-style-type: none;
+        padding-left: 0;
+        color: #333;
+        margin: 0;
+      }
+      li {
+        margin-bottom: 0.5rem;
+        padding-left: 1.3rem;
+        position: relative;
+      }
+      li::before {
+        content: "🔹";
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      .mensagem {
+        margin-top: 1rem;
+        padding: 1rem;
+        background-color: #eaf3fa;
+        border-left: 4px solid #5c88b2;
+        border-radius: 8px;
+        font-style: italic;
+        display: none;
+        color: #2a4d69;
+      }
+      .doacao-container {
+        background-color: #f8fbff;
+        border: 1px solid #d1e4f0;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-top: 2rem;
+        box-shadow: 0 4px 12px rgba(173, 216, 230, 0.1);
+      }
+      .pix-code {
+        font-weight: bold;
+        font-size: 1.1rem;
+        background: #e6f2ff;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        display: inline-block;
+        color: #1e3e5e;
+      }
+      .valor-doacao {
+        margin-top: 1rem;
+        font-size: 1.1rem;
+        color: #2a4d69;
+        text-align: center;
+      }
+      input[type="range"] {
+        width: 100%;
+        margin-top: 0.5rem;
+        cursor: pointer;
+      }
+      .lista-doacoes {
+        margin-top: 1rem;
+        max-height: 150px;
+        overflow-y: auto;
+        border: 1px solid #c9e0f2;
+        border-radius: 10px;
+        padding: 0.8rem;
+        background-color: #eaf3fa;
+        font-size: 0.9rem;
+        color: #2a4d69;
+        line-height: 1.3;
+      }
+      .lista-doacoes p {
+        margin: 0.25rem 0;
+        border-bottom: 1px solid #d4e3f1;
+        padding-bottom: 0.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🎁 Lista de Presentes <span class="ring">💍</span></h1>
+
+      <div class="boas-vindas">
+        <h2>💌 Bem-vindo(a) ao nosso Chá de Panela!</h2>
+        <p>
+          Estamos muito felizes com esse momento especial e queremos dividir
+          essa alegria com você.<br />
+          Escolha com carinho um presente da lista abaixo e prepare-se para
+          comemorar com a gente!
+        </p>
+        <p>
+          <strong>📍 Local:</strong> Salão de Festas do Edifício Bela Vista<br />
+          <strong>📅 Data:</strong> 20 de Agosto de 2025 às 17h
+        </p>
+      </div>
+
+      <label for="categoriaSelect">Escolha o ambiente:</label>
+      <select id="categoriaSelect">
+        <option value="">-- Selecione um ambiente --</option>
+      </select>
+
+      <label for="itemSelect">Escolha um presente:</label>
+      <select id="itemSelect" disabled>
+        <option value="">-- Selecione um item --</option>
+      </select>
+
+      <button id="btnConfirmarItem">Confirmar Escolha</button>
+      <div class="mensagem" id="mensagemEscolha"></div>
+
+      <h2>Itens já escolhidos:</h2>
+      <div id="itensEscolhidos">
+        <p>Nenhum item escolhido ainda.</p>
+      </div>
+
+      <div class="doacao-container">
+        <h2>🌴 Contribua com a nossa Lua de Mel!</h2>
+        <p>
+          Você também pode nos presentear com uma doação. Qualquer valor é
+          bem-vindo! 💖
+        </p>
+        <p>Chave PIX: <span class="pix-code">15363528614</span></p>
+
+        <label for="valorSlider">Escolha o valor da sua doação:</label>
+        <input
+          type="range"
+          id="valorSlider"
+          min="50"
+          max="1000"
+          step="50"
+          value="50"
+        />
+        <div class="valor-doacao">
+          Valor selecionado: <strong id="valorAtual">R$ 50,00</strong>
+        </div>
+        <button id="btnConfirmarDoacao">Confirmar Doação</button>
+
+        <h3>Doações realizadas:</h3>
+        <div class="lista-doacoes" id="listaDoacoes">
+          <p>Nenhuma doação realizada ainda.</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const itensRepetiveis = [
+        "Panelas e frigideiras",
+        "Conjunto de potes herméticos",
+        "Jarra de suco",
+      ];
+
+      const itens = {
+        Cozinha: [
+          "Utensílios de cozinha (colheres de pau, espátulas, conchas)",
+          "Panelas e frigideiras",
+          "Conjunto de potes herméticos",
+          "Liquidificador ou processador de alimentos",
+          "Cafeteira ou máquina de café expresso",
+          "Conjunto de facas de qualidade",
+          "Formas de bolo e assadeiras",
+          "Mixer de mão ou batedeira",
+          "Leiteira",
+          "Jarra de suco",
+          "Escorredor de louças",
+          "Coador",
+          "Jogo de talheres",
+          "Geladeira",
+          "Fogão ou cooktop",
+          "Micro-ondas",
+          "Forno elétrico",
+          "Lava-louças",
+          "Exaustor",
+          "Torradeira",
+          "Sanduicheira",
+          "Panela elétrica",
+          "Air fryer",
+        ],
+        "Sala de Estar": [
+          "Mesa de centro ou lateral",
+          "Almofadas e mantas",
+          "Porta-retratos",
+          "Tapetes",
+          "Cortinas",
+          "Luminárias e abajures",
+          "Televisão",
+          "Home theater ou soundbar",
+          "Ventilador ou ar-condicionado portátil",
+        ],
+        Quarto: [
+          "Roupas de cama (lençóis, fronhas, edredons, colchas)",
+          "Travesseiros",
+          "Organizadores de armário",
+          "Cabides",
+          "Espelhos",
+          "Ferro de passar",
+          "Ventilador ou ar-condicionado portátil",
+        ],
+        Banheiro: [
+          "Toalhas (de banho, rosto, piso)",
+          "Tapetes de banheiro",
+          "Porta-sabonete e porta-escova de dentes",
+          "Secador de cabelo",
+          "Chapinha ou modelador de cachos",
+        ],
+        Lavanderia: [
+          "Cesto de roupas",
+          "Tábua e ferro de passar",
+          "Varal de roupas",
+          "Pregadores",
+          "Máquina de lavar roupas",
+          "Secadora de roupas",
+        ],
+        "Itens Gerais": [
+          "Kit de ferramentas básico",
+          "Extensões elétricas",
+          "Lixeiras",
+          "Relógios de parede",
+          "Quadros decorativos",
+          "Aspirador de pó",
+          "Purificador de água",
+        ],
+      };
+
+      const categoriaSelect = document.getElementById("categoriaSelect");
+      const itemSelect = document.getElementById("itemSelect");
+      const listaEscolhidos = document.getElementById("itensEscolhidos");
+      const mensagem = document.getElementById("mensagemEscolha");
+      const valorSlider = document.getElementById("valorSlider");
+      const valorAtual = document.getElementById("valorAtual");
+      const listaDoacoes = document.getElementById("listaDoacoes");
+      const btnConfirmarItem = document.getElementById("btnConfirmarItem");
+      const btnConfirmarDoacao = document.getElementById("btnConfirmarDoacao");
+
+      let itensEscolhidos =
+        JSON.parse(localStorage.getItem("itensEscolhidos")) || [];
+      let doacoes = JSON.parse(localStorage.getItem("doacoes")) || [];
+
+      function salvarItens() {
+        localStorage.setItem(
+          "itensEscolhidos",
+          JSON.stringify(itensEscolhidos)
+        );
+      }
+
+      function salvarDoacoes() {
+        localStorage.setItem("doacoes", JSON.stringify(doacoes));
+      }
+
+      function renderizarItensEscolhidos() {
+        listaEscolhidos.innerHTML = "";
+        if (itensEscolhidos.length === 0) {
+          listaEscolhidos.innerHTML = "<p>Nenhum item escolhido ainda.</p>";
+          return;
+        }
+        const caixa = document.createElement("div");
+        caixa.classList.add("caixa-itens");
+        const ul = document.createElement("ul");
+        itensEscolhidos.forEach(({ item, categoria }) => {
+          const li = document.createElement("li");
+          li.textContent = `${item} (${categoria})`;
+          ul.appendChild(li);
+        });
+        caixa.appendChild(ul);
+        listaEscolhidos.appendChild(caixa);
+      }
+
+      function renderizarDoacoes() {
+        listaDoacoes.innerHTML = "";
+        if (doacoes.length === 0) {
+          listaDoacoes.innerHTML = "<p>Nenhuma doação realizada ainda.</p>";
+          return;
+        }
+        doacoes.forEach((d) => {
+          const p = document.createElement("p");
+          const data = new Date(d.timestamp).toLocaleDateString("pt-BR");
+          p.textContent = `R$ ${d.valor.toFixed(2)} — ${data}`;
+          listaDoacoes.appendChild(p);
+        });
+      }
+
+      function popularCategorias() {
+        Object.keys(itens).forEach((c) => {
+          const option = document.createElement("option");
+          option.value = option.textContent = c;
+          categoriaSelect.appendChild(option);
+        });
+      }
+
+      function atualizarItens(categoria) {
+        itemSelect.innerHTML =
+          '<option value="">-- Selecione um item --</option>';
+        itemSelect.disabled = !categoria;
+        if (categoria && itens[categoria]) {
+          itens[categoria].forEach((item) => {
+            const opt = document.createElement("option");
+            opt.value = opt.textContent = item;
+            itemSelect.appendChild(opt);
+          });
+        }
+      }
+
+      btnConfirmarItem.addEventListener("click", () => {
+        const itemSelecionado = itemSelect.value;
+        const categoriaAtual = categoriaSelect.value;
+        if (!itemSelecionado || !categoriaAtual) {
+          mensagem.style.display = "block";
+          mensagem.innerHTML = `❌ <strong>Por favor, selecione categoria e item.</strong>`;
+          return;
+        }
+        const jaEscolhido = itensEscolhidos.some(
+          (el) => el.item === itemSelecionado
+        );
+        if (jaEscolhido && !itensRepetiveis.includes(itemSelecionado)) {
+          mensagem.style.display = "block";
+          mensagem.innerHTML = `❌ <strong>Item já selecionado.</strong>`;
+          return;
+        }
+        itensEscolhidos.push({
+          item: itemSelecionado,
+          categoria: categoriaAtual,
+        });
+        salvarItens();
+        renderizarItensEscolhidos();
+        if (!itensRepetiveis.includes(itemSelecionado)) {
+          const idx = itens[categoriaAtual].indexOf(itemSelecionado);
+          if (idx !== -1) itens[categoriaAtual].splice(idx, 1);
+        }
+        atualizarItens(categoriaAtual);
+        mensagem.style.display = "block";
+        mensagem.innerHTML = `💙 Você escolheu: <strong>${itemSelecionado}</strong><br/>Obrigado por ajudar a montar esse novo lar!`;
+      });
+
+      btnConfirmarDoacao.addEventListener("click", () => {
+        const valor = Number(valorSlider.value);
+        if (valor < 50) {
+          alert("O valor mínimo para doação é R$ 50,00.");
+          return;
+        }
+        doacoes.push({ valor, timestamp: Date.now() });
+        salvarDoacoes();
+        renderizarDoacoes();
+        mensagem.style.display = "block";
+        mensagem.innerHTML = `💖 Obrigado pela sua doação de <strong>R$ ${valor.toFixed(
+          2
+        )}</strong>!`;
+      });
+
+      valorSlider.addEventListener("input", () => {
+        valorAtual.textContent = `R$ ${Number(valorSlider.value).toFixed(2)}`;
+      });
+
+      categoriaSelect.addEventListener("change", () => {
+        atualizarItens(categoriaSelect.value);
+        mensagem.style.display = "none";
+      });
+
+      // Inicialização
+      popularCategorias();
+      renderizarItensEscolhidos();
+      renderizarDoacoes();
+    </script>
+  </body>
+</html>
